@@ -1,8 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name
+  attr_accessible :name, :email
 
-   validates :name, :length => { :minimum => 2 }
+  validates :name, :email, presence: true
   validates :email, :format =>
                     { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/}
   validates :email, :uniqueness => true
+
+  has_many :contacts
+
+  has_many :favorites
 end

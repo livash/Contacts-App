@@ -1,5 +1,11 @@
 JOApp::Application.routes.draw do
-  resources :users
+  resources :contacts, except: [:index, :destroy, :new, :edit]
+  resources :favorites, except: [:destroy, :new, :edit]
+  resources :users, except: [:destroy, :new, :edit]
+
+  resources :users do
+    resources :contacts, :only => [:index]
+  end
   # get "users" => "UsersController#index"
   # post "users" => "UsersController#create"
   # get "users/new" => "UsersController#new"

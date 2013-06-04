@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-  def index
-    users = User.all
 
-    render :json => users
+  def index
+    @users = User.all
+    render json: @users
+  end
+
+  def show
+    user = User.find(params[:id])
+    render json: user
   end
 
   def create
@@ -14,13 +19,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    render :text => "I'm in the show action"
+  def update
+
   end
 
-  def destroy
-    user = User.find(params[:id])
-    user.destroy
-    render json: user
-  end
 end
