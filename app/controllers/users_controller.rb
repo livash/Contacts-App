@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    #check that is not nill based on :id
     user = User.find(params[:id])
     render json: user
   end
@@ -20,7 +21,10 @@ class UsersController < ApplicationController
   end
 
   def update
-
+    #check that is not nill based on :id
+    user = User.find(params[:id])
+    user.update_attributes(params["user"])
+    render json: user
   end
 
 end

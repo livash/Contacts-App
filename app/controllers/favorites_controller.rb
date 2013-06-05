@@ -1,16 +1,12 @@
 class FavoritesController < ApplicationController
   def index
-    @favorite = Favorite.all
+    user = User.find(params[:user_id])
+    @favorites = user.favorites
     render json: @favorites
   end
 
-  def show
-    favorite = Favorite.find(params[:id])
-    render :json => favorite
-  end
-
   def create
-    favorite = Favorite.new(params[:favorite])
+    favorite = Favorite.new(user_id: params[:user_id], contact_id: params[:contact_id])
     if favorite.save
       render :json => favorite
     else
@@ -18,7 +14,9 @@ class FavoritesController < ApplicationController
     end
   end
 
-  def update
-
+  def destroy
+    favorite = Favorite.where(user_id: params[:user_id], contact_id: params[:contact_id]).destroy_all
+    render :json => {:status => "ok"}
   end
+
 end

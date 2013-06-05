@@ -5,7 +5,7 @@ url = Addressable::URI.new(
   scheme: 'http',
   host: 'localhost',
   port: 3000,
-  path: '/users.json',
+  path: '/users/1/contacts/1.json',
   # :query_values => {"id" => 3}
   #   'some_category[a_key]' => 'another value',
   #   'some_category[a_second_key]' => 'yet another value',
@@ -15,10 +15,11 @@ url = Addressable::URI.new(
 ).to_s
 puts url
 
-params = {'user' => {'name' => 'Jane Doe',
-    'email' => 'a@a.com'}}
+params = {'contact' => { 'name' => 'Olena Iv' }}
 
-puts RestClient.post(url, params)
+puts RestClient.post(url)
+
+
 #puts RestClient.delete(url)
 
 # begin
