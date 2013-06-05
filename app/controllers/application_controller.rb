@@ -6,14 +6,13 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    if logged_in?
-    else
-      render :json => {:status => "YOu are not authorized"}
+    unless logged_in?
+      render :json => {:status => "You are not authorized"}
     end
   end
 
   def logged_in?
-
+    params[:token] and current_user
   end
 
 
